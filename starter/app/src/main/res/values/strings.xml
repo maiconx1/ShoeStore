@@ -10,4 +10,9 @@
     <string name="err_password_empty">Password should not be empty</string>
     <string name="err_user_not_signeup">User not registered! Please sign up to proceed</string>
     <string name="err_user_signedup">User already signed up</string>
+    <string name="welcome">Welcome!</string>
+    <string name="nice_text">It\'s nice to see you here</string>
+    <string name="next_instructions">Click on next to check instructions</string>
+    <string name="skip">Skip</string>
+    <string name="next">Next</string>
 </resources>
