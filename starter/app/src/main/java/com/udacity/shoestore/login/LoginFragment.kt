@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.LoginFragmentBinding
@@ -66,18 +67,20 @@ class LoginFragment : Fragment() {
         })
         viewModel.performLogin.observe(viewLifecycleOwner, Observer { performLogin ->
             if (performLogin) {
-                openShoeList()
+                openWelcome()
                 viewModel.finishedLogin()
             }
         })
     }
 
-    private fun openShoeList() {
-        //TODO: OPEN SHOE LIST
-        Snackbar.make(
-            binding.credentialsCard,
-            "Open shoe list",
-            Snackbar.LENGTH_SHORT
-        ).show()
+    private fun openWelcome() {
+        val action = if (viewModel.welcomeShowed) {
+            LoginFragmentDirections.actionLoginFragmentToWelcomeFragment()
+        } else {
+            viewModel.setWelcomeShowed()
+            //TODO: CHANGE TO SHOE LIST
+            LoginFragmentDirections.actionLoginFragmentToWelcomeFragment()
+        }
+        findNavController().navigate(action)
     }
 }

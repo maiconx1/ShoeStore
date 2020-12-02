@@ -32,6 +32,10 @@ class LoginViewModel : ViewModel() {
     val errorMessage: LiveData<Int>
         get() = _errorMessage
 
+    private var _welcomeShowed: Boolean = false
+    val welcomeShowed: Boolean
+        get() = _welcomeShowed
+
     fun checkEmail(): Boolean {
         return when (email.value?.checkEmail()) {
             Constants.EMAIL_EMPTY -> {
@@ -95,5 +99,9 @@ class LoginViewModel : ViewModel() {
 
     fun errorShowed() {
         _errorMessage.value = null
+    }
+
+    fun setWelcomeShowed() {
+        _welcomeShowed = true
     }
 }
