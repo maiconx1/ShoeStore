@@ -15,4 +15,7 @@
     <string name="next_instructions">Click on next to check instructions</string>
     <string name="skip">Skip</string>
     <string name="next">Next</string>
+    <string name="instructions">Instructions</string>
+    <string name="continueButton">Continue</string>
+    <string name="instructions_detail">- See the shoe names on the list\n\n- Select name to see details\n\n- Click on the + button to add new Shoe</string>
 </resources>
