@@ -10,9 +10,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
+import com.udacity.shoestore.MainActivity
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.LoginFragmentBinding
 import com.udacity.shoestore.extensions.getStringSafely
+import kotlinx.android.synthetic.main.login_fragment.*
 
 class LoginFragment : Fragment() {
 
@@ -24,7 +26,11 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.login_fragment, container, false)
-        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+
+        val viewModelFactory = (activity as? MainActivity)?.viewModelFactory
+        viewModel = viewModelFactory?.let { factory ->
+            ViewModelProvider(this, factory).get(LoginViewModel::class.java)
+        } ?: ViewModelProvider(this).get(LoginViewModel::class.java)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
@@ -68,19 +74,15 @@ class LoginFragment : Fragment() {
         viewModel.performLogin.observe(viewLifecycleOwner, Observer { performLogin ->
             if (performLogin) {
                 openWelcome()
+                emailEditText.clearFocus()
+                passwordEditText.clearFocus()
                 viewModel.finishedLogin()
             }
         })
     }
 
     private fun openWelcome() {
-        val action = if (viewModel.welcomeShowed) {
-            LoginFragmentDirections.actionLoginFragmentToWelcomeFragment()
-        } else {
-            viewModel.setWelcomeShowed()
-            //TODO: CHANGE TO SHOE LIST
-            LoginFragmentDirections.actionLoginFragmentToWelcomeFragment()
-        }
+        val action = LoginFragmentDirections.actionLoginFragmentToWelcomeFragment()
         findNavController().navigate(action)
     }
 }

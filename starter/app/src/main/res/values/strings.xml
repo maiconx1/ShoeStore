@@ -1,12 +1,17 @@
 <resources>
     <string name="app_name">ShoeStore</string>
     <string name="email">E-mail</string>
+    <string name="company">Company</string>
+    <string name="name">Name</string>
+    <string name="size">Size</string>
+    <string name="size_value">Size: %.1f</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="signUpText">Don\'t have any account? Sign Up</string>
     <string name="description_logo_image">Logo Image</string>
     <string name="err_email_empty">E-mail should not be empty</string>
     <string name="err_email_invalid">Enter a valid e-mail</string>
+    <string name="err_field_invalid">Enter a valid value</string>
     <string name="err_password_empty">Password should not be empty</string>
     <string name="err_user_not_signeup">User not registered! Please sign up to proceed</string>
     <string name="err_user_signedup">User already signed up</string>
@@ -17,5 +22,11 @@
     <string name="next">Next</string>
     <string name="instructions">Instructions</string>
     <string name="continueButton">Continue</string>
-    <string name="instructions_detail">- See the shoe names on the list\n\n- Select name to see details\n\n- Click on the + button to add new Shoe</string>
+    <string name="instructions_detail">- See the shoe names on the list\n\n- Select shoe to see details\n\n- Click on the + button to add new Shoe</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="shoe_details">Shoe Details</string>
+    <string name="description">Description</string>
+    <string name="logout">LogOut</string>
+    <string name="no_shoe">No shoe added yet</string>
 </resources>

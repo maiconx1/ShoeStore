@@ -13,8 +13,8 @@ class LoginViewModel : ViewModel() {
 
     private val userList = mutableListOf<User>()
 
-    var email = MutableLiveData<String>()
-    var password = MutableLiveData<String>()
+    var email = MutableLiveData<String>("")
+    var password = MutableLiveData<String>("")
 
     private val _emailInputError = MutableLiveData<Int>()
     val emailInputError: LiveData<Int>
@@ -32,17 +32,13 @@ class LoginViewModel : ViewModel() {
     val errorMessage: LiveData<Int>
         get() = _errorMessage
 
-    private var _welcomeShowed: Boolean = false
-    val welcomeShowed: Boolean
-        get() = _welcomeShowed
-
     fun checkEmail(): Boolean {
         return when (email.value?.checkEmail()) {
-            Constants.EMAIL_EMPTY -> {
+            Constants.FIELD_EMPTY -> {
                 _emailInputError.value = R.string.err_email_empty
                 false
             }
-            Constants.EMAIL_INVALID -> {
+            Constants.FIELD_INVALID -> {
                 _emailInputError.value = R.string.err_email_invalid
                 false
             }
@@ -59,7 +55,7 @@ class LoginViewModel : ViewModel() {
 
     fun checkPassword(): Boolean {
         return when (password.value?.checkPassword()) {
-            Constants.PASSWORD_EMPTY -> {
+            Constants.FIELD_EMPTY -> {
                 _passwordInputError.value = R.string.err_password_empty
                 false
             }
@@ -94,14 +90,12 @@ class LoginViewModel : ViewModel() {
     }
 
     fun finishedLogin() {
+        email.value = ""
+        password.value = ""
         _performLogin.value = false
     }
 
     fun errorShowed() {
         _errorMessage.value = null
-    }
-
-    fun setWelcomeShowed() {
-        _welcomeShowed = true
     }
 }
