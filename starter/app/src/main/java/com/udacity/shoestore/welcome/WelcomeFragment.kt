@@ -45,7 +45,8 @@ class WelcomeFragment : Fragment() {
     }
 
     private fun openShoeList() {
-        //TODO: OPEN SHOE LIST
+        val action = WelcomeFragmentDirections.actionWelcomeFragmentToShoeListFragment()
+        findNavController().navigate(action)
     }
 
     private fun openInstructions() {

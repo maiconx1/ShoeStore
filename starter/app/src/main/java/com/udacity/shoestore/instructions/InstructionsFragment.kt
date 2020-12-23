@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.InstructionsFragmentBinding
 
@@ -35,6 +36,7 @@ class InstructionsFragment : Fragment() {
     }
 
     private fun openShoeList() {
-        //TODO: OPEN SHOE LIST
+        val action = InstructionsFragmentDirections.actionInstructionsFragmentToShoeListFragment()
+        findNavController().navigate(action)
     }
 }

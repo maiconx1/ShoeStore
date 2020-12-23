@@ -10,128 +10,101 @@
             type="com.udacity.shoestore.login.LoginViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/backgroundColor"
-        android:orientation="vertical"
+        android:fillViewport="true"
         tools:context=".login.LoginFragment">
 
-        <ImageView
-            android:id="@+id/logoImage"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="64dp"
-            android:contentDescription="@string/description_logo_image"
-            android:src="@drawable/ic_launcher_background"
-            app:layout_constraintBottom_toTopOf="@id/credentialsCard"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:background="@color/backgroundColor"
+            android:orientation="vertical">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/credentialsCard"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/login_card_background"
-            android:padding="@dimen/default_margin"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/logoImage">
-
-            <TextView
-                android:id="@+id/loginText"
-                android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/logoImage"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:fontFamily="@font/roboto"
-                android:letterSpacing="0.1"
-                android:text="@string/login"
-                android:textAlignment="center"
-                android:textColor="@color/textColor"
-                android:textSize="32sp"
-                android:textStyle="bold"
+                android:layout_margin="64dp"
+                android:contentDescription="@string/description_logo_image"
+                android:src="@drawable/ic_launcher_foreground"
+                app:layout_constraintBottom_toTopOf="@id/credentialsCard"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/emailInputLayout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:background="@drawable/edit_text_background"
-                android:hint="@string/email"
-                android:padding="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/loginText"
-                app:layout_constraintWidth_percent="0.8"
-                app:startIconDrawable="@drawable/ic_baseline_account_circle_24">
+            <LinearLayout
+                android:id="@+id/credentialsCard"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/login_card_background"
+                android:orientation="vertical"
+                android:padding="@dimen/default_margin">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/emailEditText"
+                <TextView
+                    android:id="@+id/loginText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@null"
-                    android:inputType="textEmailAddress"
-                    android:padding="8dp"
-                    android:text="@={viewModel.email}"
-                    android:textSize="21sp" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginTop="32dp"
+                    android:fontFamily="@font/roboto"
+                    android:letterSpacing="0.1"
+                    android:text="@string/login"
+                    android:textAlignment="center"
+                    android:textColor="@color/textColor"
+                    android:textSize="32sp"
+                    android:textStyle="bold" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/passwordInputLayout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:background="@drawable/edit_text_background"
-                android:hint="@string/password"
-                android:padding="8dp"
-                app:layout_constraintEnd_toEndOf="@id/emailInputLayout"
-                app:layout_constraintStart_toStartOf="@id/emailInputLayout"
-                app:layout_constraintTop_toBottomOf="@id/emailInputLayout"
-                app:passwordToggleEnabled="true"
-                app:startIconDrawable="@drawable/ic_baseline_vpn_key_24">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/emailInputLayout"
+                    style="@style/LoginInputLayout"
+                    android:hint="@string/email"
+                    app:startIconDrawable="@drawable/account">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/passwordEditText"
-                    android:layout_width="match_parent"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/emailEditText"
+                        style="@style/LoginEditText"
+                        android:inputType="textEmailAddress"
+                        android:text="@={viewModel.email}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/passwordInputLayout"
+                    style="@style/LoginInputLayout"
+                    android:hint="@string/password"
+                    app:passwordToggleEnabled="true"
+                    app:startIconDrawable="@drawable/password">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/passwordEditText"
+                        style="@style/LoginEditText"
+                        android:inputType="textPassword"
+                        android:text="@={viewModel.password}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@null"
-                    android:drawablePadding="8dp"
-                    android:inputType="textPassword"
-                    android:padding="8dp"
-                    android:text="@={viewModel.password}"
-                    android:textSize="21sp" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_gravity="center"
+                    android:layout_marginTop="24dp"
+                    android:onClick="@{() -> viewModel.login()}"
+                    android:text="@string/login" />
 
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:onClick="@{() -> viewModel.login()}"
-                android:text="@string/login"
-                app:layout_constraintEnd_toEndOf="@id/passwordInputLayout"
-                app:layout_constraintStart_toStartOf="@id/passwordInputLayout"
-                app:layout_constraintTop_toBottomOf="@id/passwordInputLayout" />
+                <TextView
+                    android:id="@+id/signUpText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginTop="48dp"
+                    android:layout_marginBottom="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="@{() -> viewModel.signUp()}"
+                    android:text="@string/signUpText"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/signUpText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:onClick="@{() -> viewModel.signUp()}"
-                android:text="@string/signUpText"
-                android:textColor="@color/textColor"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
 </layout>
