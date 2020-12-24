@@ -34,4 +34,8 @@
         <item name="android:textColorHint">@color/textColorGray</item>
     </style>
 
+    <style name="ToolbarWhiteMenu" parent="AppTheme">
+        <item name="android:textColorSecondary">@color/textColorWhite</item>
+    </style>
+
 </resources>
